@@ -56,7 +56,7 @@ onUnmounted(() => {
     background: #fff;
     border-radius: 54px;
     padding: 35px 95px 45px 45px;
-    max-width: 606px;
+    max-width: 100%;
 }
 
 .sex-modal {
