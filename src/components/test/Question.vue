@@ -62,7 +62,7 @@
         <SliderVue :is="sliderComponent" v-model:modelValue="sliderAnswer" :key="question.title" />
       </div>
       <div class="buttons">
-        <Button outlined>Назад</Button>
+<!--         <Button outlined>Назад</Button> -->
         <a class="pause" href="javascript:" @click="pause">
           <img src="@/assets/pause.svg" alt="Пауза" />
         </a>

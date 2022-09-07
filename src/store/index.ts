@@ -40,11 +40,20 @@ export const useStore = defineStore({
       incrementAnswersCount() {
         this.answersCount += 1;
       },
+      setAnswersCount(payload: number) {
+        this.answersCount = payload;
+      },
       nextQuestion() {
         this.currentQuestionNumber += 1;
       },
+      setQuestionNumber(payload: number) {
+        this.currentQuestionNumber = payload;
+      },
       addAnswer(payload: StoreAnswers) {
         this.answers.push(payload);
+      },
+      setAnswers(payload: StoreAnswers[]) {
+        this.answers = payload;
       },
       changeStep(payload: string) {
         this.step = payload

@@ -55,10 +55,10 @@
         <div class="present">
             <div class="title">Забери свой <span>подарок</span>:</div>
             <div class="description">Подарок будет ждать тебя <b>на твоей электронной почте:</b></div>
-            <form class="present-form">
+            <form class="present-form" @submit.prevent="submit">
                 <TextField placeholder="Твоя электронная почта" :error="error" v-model:value="email"
                     @focus="error = ''"></TextField>
-                <Button class="submit" @click="submit"></Button>
+                <Button class="submit"></Button>
             </form>
         </div>
         <Share :image="'/assets/' + test.image" :title="test.title" :description="shareDescription"></Share>
@@ -86,7 +86,7 @@ const isEmailValid = (email: string) => {
     return re.test(String(email).toLowerCase())
 }
 
-const submit = () => {
+const submit = async () => {
     if (!email.value) error.value = 'Это поле необходимо заполнить'
     else if (!isEmailValid(email.value))
         error.value = 'Введите корректный e-mail'
@@ -97,12 +97,23 @@ const submit = () => {
     }
 
 
+    const meta = document.querySelector('meta[name="csrf-token"]') as HTMLMetaElement
+    const token = meta.content
+
     const data = new FormData()
     data.append('sex', store.selectedSex?.sexValue || '')
     data.append('age', store.selectedAge?.ageValue || '')
     data.append('test', store.currentTest.title)
     data.append('result', result)
     data.append('email', email.value)
+    data.append('_token', token)
+
+    const response = await fetch('/api/test_done', {
+        method: 'POST',
+        body: data
+    })
+
+    console.log(response)
 }
 
 const shareDescription = computed(() => {

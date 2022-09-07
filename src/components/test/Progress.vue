@@ -1,5 +1,5 @@
 <template>
-  <div class="progress-bar" v-if="store.answersCount">
+  <div class="progress-bar" v-if="store.answersCount && store.questionsCount">
     <div class="progress-line" :style="{ width: `${value}%` }"></div>
     <div class="progress-value" v-if="value">{{ value }} %</div>
     <div class="progress-info">Вопрос {{ (store.answersCount + 1) }} из {{ store.questionsCount }}</div>
