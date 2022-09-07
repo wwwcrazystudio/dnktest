@@ -103,6 +103,19 @@ const submit = () => {
     data.append('test', store.currentTest.title)
     data.append('result', result)
     data.append('email', email.value)
+    
+    const res = await fetch('/api/test_done', {
+        method: 'POST',
+        body: data
+    })
+
+    let r = await res.json()
+    console.log(r)
+    if (r.status !== undefined && r.status === 'success') {
+        // Show Success Modal
+    } else {
+        // Show Error Modal
+    }
 }
 
 const shareDescription = computed(() => {
