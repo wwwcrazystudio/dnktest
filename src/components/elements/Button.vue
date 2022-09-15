@@ -1,6 +1,5 @@
 <template>
-    <button class="btn"
-        :disabled="disabled"
+    <button class="btn" :disabled="disabled"
         :class="{ 'btn-outline': outlined, 'btn-disabled': disabled, 'btn-arrow': arrow, icon, rounded, small, sp }"
         @click="$emit('click')">
         <slot></slot>
@@ -143,5 +142,11 @@ span.icon {
 .icon.rounded.small {
     height: 50px;
     width: 50px;
+}
+
+@media (max-width:550px) {
+    .btn {
+        justify-content: center;
+    }
 }
 </style>

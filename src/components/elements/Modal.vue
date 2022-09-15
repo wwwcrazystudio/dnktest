@@ -1,19 +1,26 @@
 <template>
     <div class="modal" v-show="show">
-        <div class="modal-content" @click.stop>
-            <div class="modal-header">
-                <slot name="header"></slot>
+        <div class="modal-wrap">
+            <div class="modal-content" @click.stop>
+                <button class="modal-close" @click="$emit('close')">
+                    <svg width="24" heigh="24" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" tabindex="-1" stroke="#fe6205">
+                        <path d="M20 20L4 4m16 0L4 20"></path>
+                    </svg>
+                </button>
+                <div class="modal-header">
+                    <slot name="header"></slot>
+                </div>
+                <div class="modal-description">
+                    <slot name="description"></slot>
+                </div>
+                <slot></slot>
             </div>
-            <div class="modal-description">
-                <slot name="description"></slot>
-            </div>
-            <slot></slot>
         </div>
     </div>
 </template>
 
 <script setup lang="ts">
-import { onMounted, onUnmounted } from 'vue';
+import { onMounted, onUnmounted, watch } from 'vue';
 
 export interface ModalProps {
     show: boolean
@@ -24,7 +31,7 @@ export interface Emits {
 }
 
 const emit = defineEmits<Emits>()
-defineProps<ModalProps>()
+const props = defineProps<ModalProps>()
 
 const handleDocumentClick = () => {
     emit('close')
@@ -37,6 +44,15 @@ onMounted(() => {
 onUnmounted(() => {
     document.removeEventListener('click', handleDocumentClick)
 })
+
+watch(() => props.show, () => {
+    if (props.show) {
+        document.documentElement.classList.add('locked')
+        return
+    }
+
+    document.documentElement.classList.remove('locked')
+})
 </script>
 
 <style scoped>
@@ -44,12 +60,26 @@ onUnmounted(() => {
     position: fixed;
     left: 0;
     top: 0;
-    display: grid;
-    place-content: center;
-    width: 100%;
-    height: 100%;
     z-index: 100;
+    height: 100vh;
+    width: 100vw;
     background: rgba(0, 0, 0, 0.6);
+}
+
+.modal-wrap {
+    height: calc(100vh - 60px);
+    padding-top: 30px;
+    padding-bottom: 30px;
+    overflow: auto;
+}
+
+.modal-close {
+    position: absolute;
+    top: 6-px;
+    right: 20px;
+    background-color: transparent;
+    border: none;
+    z-index: 10;
 }
 
 .modal-content {
@@ -57,6 +87,8 @@ onUnmounted(() => {
     border-radius: 54px;
     padding: 35px 95px 45px 45px;
     max-width: 606px;
+    height: fit-content;
+    margin: auto;
 }
 
 .sex-modal {
@@ -110,10 +142,11 @@ onUnmounted(() => {
 }
 
 @media screen and (max-width: 550px) {
-    .modal {
-        max-width: 100%;
-        padding-left: 20px;
-        padding-right: 20px;
+
+    .modal-content {
+        max-width: calc(100% - 30px);
+        padding: 24px 36px;
+        border-radius: 32px;
     }
 
     .age-alert-modal {

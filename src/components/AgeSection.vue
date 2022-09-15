@@ -279,6 +279,10 @@ const sexes = [
         margin-bottom: 90px;
     }
 
+    .age-card .image {
+        max-width: 40%;
+    }
+
     .age-card:last-child {
         margin-bottom: 0;
     }

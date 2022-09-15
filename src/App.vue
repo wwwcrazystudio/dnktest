@@ -60,7 +60,7 @@ watch(() => store.answersCount, () => {
 </script>
 
 <template>
-  <div>
+  <div class="tests">
     <template v-if="!store.currentTest.title">
       <AgeSection />
     </template>
@@ -72,7 +72,15 @@ watch(() => store.answersCount, () => {
 </template>
 
 <style>
+.locked {
+  overflow: hidden;
+}
+
+.tests {
+  overflow: hidden;
+}
+
 body {
-  background: linear-gradient(88.62deg, #1e1c57 12.62%, #12103a 95.96%);
+  background: black;
 }
 </style>
