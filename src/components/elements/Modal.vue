@@ -71,11 +71,12 @@ watch(() => props.show, () => {
     padding-top: 30px;
     padding-bottom: 30px;
     overflow: auto;
+    display: flex;
 }
 
 .modal-close {
     position: absolute;
-    top: 6-px;
+    top: 30px;
     right: 20px;
     background-color: transparent;
     border: none;
@@ -89,6 +90,7 @@ watch(() => props.show, () => {
     max-width: 606px;
     height: fit-content;
     margin: auto;
+    position: relative;
 }
 
 .sex-modal {
