@@ -63,11 +63,11 @@ watch(() => props.show, () => {
     z-index: 100;
     height: 100vh;
     width: 100vw;
+    overflow: auto;
     background: rgba(0, 0, 0, 0.6);
 }
 
 .modal-wrap {
-    height: calc(100vh - 60px);
     padding-top: 30px;
     padding-bottom: 30px;
     overflow: auto;
@@ -87,7 +87,7 @@ watch(() => props.show, () => {
     background: #fff;
     border-radius: 54px;
     padding: 35px 95px 45px 45px;
-    max-width: 606px;
+    max-width: 800px;
     height: fit-content;
     margin: auto;
     position: relative;

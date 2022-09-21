@@ -79,8 +79,4 @@ watch(() => store.answersCount, () => {
 .tests {
   overflow: hidden;
 }
-
-body {
-  background: black;
-}
 </style>

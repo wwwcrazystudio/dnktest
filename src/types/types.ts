@@ -25,23 +25,12 @@ export interface TestType {
     yesId?: number,
     noId?: number
   }
-  
-  /* export interface IGroup {
-    id: string | number,
-    title: string,
-    items?: string[]
-    text?: string,
-    'sub-title'?: string,
-    score?: number,
-    answers?: number[] | {questionId: number, id: number}
-  }
-   */
+
   export interface TestQuestion {
     id?: string | number,
     title: string,
     group?: string | number,
     answers?: TestAnswer[],
- /*    type?: QuestionType, */
     image?: string,
     male?: TestAnswer[],
     female?: TestAnswer[]
