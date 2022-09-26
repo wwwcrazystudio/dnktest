@@ -1,19 +1,17 @@
 <template>
   <div class="test-stopper">
     <Progress></Progress>
-    <ClientOnly>
-      <div class="current-progress-container">
-        <div class="current-progress" v-if="store.currentQuestionNumber">
-          Ты уже прошёл {{ store.currentQuestionNumber }} вопроса(ов)</div>
-      </div>
-      <div class="image">
-        <img :src="image" />
-        <TestClue :class="cluePosition">{{ clueText }}</TestClue>
-      </div>
-      <div class="text-center">
-        <Button @click="store.changeStep('in_progress')">Продолжить отвечать</Button>
-      </div>
-    </ClientOnly>
+    <div class="current-progress-container">
+      <div class="current-progress" v-if="store.currentQuestionNumber">
+        Ты уже прошёл {{ store.currentQuestionNumber }} вопроса(ов)</div>
+    </div>
+    <div class="image">
+      <img :src="image" />
+      <TestClue :class="cluePosition">{{ clueText }}</TestClue>
+    </div>
+    <div class="text-center">
+      <Button @click="store.changeStep('in_progress')">Продолжить отвечать</Button>
+    </div>
   </div>
 </template>
 
@@ -70,11 +68,13 @@ clueText.value = texts[random(0, 3)];
   width: 675px;
   position: relative;
   margin-bottom: 38px;
+  height: 520px;
 }
 
 @media screen and (max-width: 550px) {
   .test-stopper .image {
     width: 100%;
+    height: auto;
   }
 }
 

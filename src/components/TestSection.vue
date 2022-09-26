@@ -10,4 +10,6 @@
 
 <script setup lang="ts">
 import TestCard from './test/TestCard.vue';
+
+document.documentElement.classList.remove('locked')
 </script>
