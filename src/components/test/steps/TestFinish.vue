@@ -91,14 +91,13 @@ const submit = async () => {
     else if (!isEmailValid(email.value))
         error.value = 'Введите корректный e-mail'
     if (error.value) return false
-    let result = store.result.title || 'Тест пройден'
+    let result = JSON.stringify(store.result)
     if (store.currentTest.code === 'C2') {
         result = store.result.items.join(', ')
     }
 
-
     const meta = document.querySelector('meta[name="csrf-token"]') as HTMLMetaElement
-    const token = meta.content
+    const token = meta?.content
 
     const data = new FormData()
     data.append('sex', store.selectedSex?.sexValue || '')
